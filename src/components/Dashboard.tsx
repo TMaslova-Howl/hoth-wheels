@@ -1,7 +1,6 @@
-
 import React, { useEffect, useState } from "react";
 import { strategyFactory } from "../strategies/strategyFactory";
-import { componentFactory } from "../strategies/componentFactory.tsx";
+import { componentFactory } from "../strategies/componentFactory";
 
 interface DashboardProps {
     role: "customer" | "colleague";
@@ -29,8 +28,11 @@ const Dashboard: React.FC<DashboardProps> = ({ role }) => {
 
     return (
         <div className="container">
-            <h1>{role === "customer" ? "Characters" : "Starships"}</h1>
-            {loading ? <p className="loading">Loading...</p> : componentFactory(role, data)}
+            {loading ? (
+                <p className="loading">Loading...</p>
+            ) : (
+                componentFactory(role, data)
+            )}
         </div>
     );
 };
